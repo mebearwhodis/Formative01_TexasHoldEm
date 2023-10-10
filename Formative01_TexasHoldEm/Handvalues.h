@@ -40,4 +40,4 @@ bool HasTwoPairs(const std::vector<Card>& fullHand);
 bool HasPair(const std::vector<Card>& fullHand);
 
 HandValue Evaluate(const std::vector<Card>& hand1, const std::vector<Card>& hand2);
-void EndResult(HandValue scorePlayer, HandValue scoreComputer);
+extern void EndResult(const HandValue scorePlayer, const HandValue scoreComputer);

@@ -268,6 +268,7 @@ HandValue Evaluate(const std::vector<Card>& hand1, const std::vector<Card>& hand
 }
 
 //Depending on the values, determines the winner
+//I don't think it's working as intended, I'll keep looking into it
 void EndResult(const HandValue scorePlayer, const HandValue scoreComputer)
 {
 	if (scoreComputer > scorePlayer)

@@ -4,7 +4,6 @@
 
 #include "Betting.h"
 #include "Decks.h"
-#include "Handvalues.h"
 
 bool restart = true;
 
