@@ -10,8 +10,8 @@ int playerBank = 500;
 int computerBank = 500;
 int moneyPot = 0;
 
-
-void BettingTurn()
+//Asks the player if they want to bet and how much
+bool BettingTurn()
 {
 	DisplayUI();
 	bool wantsToBet = true;
@@ -34,14 +34,18 @@ void BettingTurn()
 
 			std::cout << std::endl;
 			wantsToBet = false;
+
+			return true;
 		}
 		else
 		{
 			if (YesNoQuestion("Choosing to fold now will make the CPU automatically win, are you sure you want to do that?"))
 			{
-				std::cout << "You lost" << std::endl;
-				//end the game function
+				std::cout << "You lost this round." << std::endl;
+				computerBank += moneyPot;
 				wantsToBet = false;
+				//I tried making it go back to the beginning of the game but couldn't figure out how
+				//if (!YesNoQuestion("Do you want to play again?")) { break; }
 			}
 			else
 			{

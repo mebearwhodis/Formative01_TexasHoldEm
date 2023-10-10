@@ -14,29 +14,29 @@ int main()
 
 		//Pre-Flop
 		DealCards(0, 2, newDeck);
-		BettingTurn();
+		if (!BettingTurn()) { break; }
 
 		//Flop
 		DealCards(3, 0, newDeck);
-		BettingTurn();
+		if (!BettingTurn()) { break; }
 
 		//Turn
 		DealCards(1, 0, newDeck);
-		BettingTurn();
+		if (!BettingTurn()) { break; }
 
 		//River
 		DealCards(1, 0, newDeck);
-		BettingTurn();
+		if (!BettingTurn()) { break; }
 
 
 
 		//Showdown
 		DisplayUI();
-		ListHand(computerHand, "Computer hand");
-		HandValue scorePlayer = Evaluate(playerHand, sharedHand);
-		HandValue scoreComputer = Evaluate(computerHand, sharedHand);
+		ListHand(computerHand, "Computer");
+		scorePlayer = Evaluate(playerHand, sharedHand);
+		scoreComputer = Evaluate(computerHand, sharedHand);
 		EndResult(scorePlayer, scoreComputer);
 
+
 	} while (YesNoQuestion("Do you want to play again?"));
-	exit(0);
 }

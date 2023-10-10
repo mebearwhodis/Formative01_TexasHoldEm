@@ -11,7 +11,7 @@ std::vector<Card> playerHand;
 std::vector<Card> computerHand;
 std::vector<Card> sharedHand;
 
-//cant shuffle stacks so we need to dump the cards in a vector, shuffle and then put them back in the stack.
+//Dumps the cards in a vector, shuffle them and then put it in a stack
 std::stack<Card> CreateRandomDeck()
 {
 
@@ -33,25 +33,26 @@ std::stack<Card> CreateRandomDeck()
 	return fullDeck;
 }
 
-
+//Deals one card from the deck to a hand, used in the DealCards function
 void DealOneCard(std::stack<Card>& fromDeck, std::vector<Card>& toHand)
 {
 	toHand.emplace_back(fromDeck.top());
 	fromDeck.pop();
 }
 
+//Allows choosing how many cards to deal
 void DealCards(const int nbToShared, const int nbToPlayers, std::stack<Card>& deckToDeal)
 {
-	//loop to put x cards in the shared hand
+	//Puts nbToShared cards in the shared hand
 	for (int i = 0; i < nbToShared; i++)
 	{
 		std::cout << "Dealt " << deckToDeal.top().CardName() << " to the shared hand." << std::endl << std::endl;
 		DealOneCard(deckToDeal, sharedHand);
 	}
-	//loop to put x cards in the player & cpu hands
+	//Puts nbToPlayers cards in the player & cpu hands
 	for (int i = 0; i < nbToPlayers * 2; i++)
 	{
-		if (i % 2 == 0)
+		if (i % 2 == 0) //This is used to alternate between the player and the cpu
 		{
 			std::cout << "Dealt " << deckToDeal.top().CardName() << " to the player." << std::endl << std::endl;
 			DealOneCard(deckToDeal, playerHand);
@@ -66,23 +67,7 @@ void DealCards(const int nbToShared, const int nbToPlayers, std::stack<Card>& de
 }
 
 
-void SortByValue(std::vector<Card>& hand)
-{
-	std::sort(hand.begin(), hand.end(), [](const Card& a, const Card& b)
-		{
-			return a.TotalValue < b.TotalValue;
-		});
-}
-
-void SortByRank(std::vector<Card>& hand)
-{
-	std::sort(hand.begin(), hand.end(), [](const Card& a, const Card& b)
-		{
-			return a.Rank < b.Rank;
-		});
-}
-
-//lists all cards in the specified hand
+//Lists all cards in the specified hand
 void ListHand(std::vector<Card> hand, const std::string& handName)
 {
 	std::cout << handName << ": ";
@@ -97,7 +82,7 @@ void ListHand(std::vector<Card> hand, const std::string& handName)
 	std::cout << std::endl;
 }
 
-//lists all cards in the specified deck
+//Lists all cards in the specified deck
 void ListDeck(std::stack<Card> deck, const std::string& deckName)
 {
 	int size = deck.size();

@@ -5,4 +5,4 @@ extern int playerBank;
 extern int computerBank;
 extern int moneyPot;
 
-void BettingTurn();
+bool BettingTurn();

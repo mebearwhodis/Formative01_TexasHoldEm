@@ -4,9 +4,11 @@
 
 #include "Betting.h"
 #include "Decks.h"
+#include "Handvalues.h"
 
-bool restart;
+bool restart = true;
 
+//Checks if the input is a valid number
 bool ValidNumber(const std::string& inputString, const int min, const int max)
 {
 	bool isInputValid = true;
@@ -32,6 +34,8 @@ bool ValidNumber(const std::string& inputString, const int min, const int max)
 	return false;
 }
 
+//Asks a Yes/No question and checks if the answer is valid
+//Can be improved, currently accepts answers with more than one character
 bool YesNoQuestion(const std::string& question)
 {
 	bool restartLoop = true;
@@ -56,6 +60,7 @@ bool YesNoQuestion(const std::string& question)
 	return false;
 }
 
+//Resets the game and clears the deck and hands. Does not reset the banks so that the player can play multiple rounds
 void ResetGame()
 {
 	moneyPot = 0;
@@ -64,9 +69,11 @@ void ResetGame()
 	playerHand.clear();
 	computerHand.clear();
 	sharedHand.clear();
+
 	system("cls");
 }
 
+//Displays information
 void DisplayUI()
 {
 	system("cls");

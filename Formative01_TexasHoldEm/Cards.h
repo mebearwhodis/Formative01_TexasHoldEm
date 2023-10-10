@@ -29,6 +29,7 @@ enum Rank
 extern std::array<std::string, 4> suitName;
 extern std::array<std::string, 13> rankName;
 
+//Suit and Rank are self-explanatory, BaseValue and TotalValue are used to check for Straight hands
 struct Card
 {
 	Suit Suit;

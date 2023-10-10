@@ -14,8 +14,6 @@ std::stack<Card> CreateRandomDeck();
 
 void DealOneCard(std::stack<Card>& fromDeck, std::vector<Card>& toHand);
 void DealCards(int nbToShared, int nbToPlayers, std::stack<Card>& deckToDeal);
-void SortByValue(std::vector<Card>& hand);
-void SortByRank(std::vector<Card>& hand);
 
 void ListHand(std::vector<Card> hand, const std::string& handName);
 void ListDeck(std::stack<Card> deck, const std::string& deckName);

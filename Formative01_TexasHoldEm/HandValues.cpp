@@ -1,5 +1,6 @@
 #include "HandValues.h"
 
+#include <algorithm>
 #include <iostream>
 #include <map>
 
@@ -18,6 +19,8 @@ std::array<std::string, 9> valueName
 	"Straight Flush"
 };
 
+HandValue scorePlayer;
+HandValue scoreComputer;
 
 std::vector<Card> FuseHands(const std::vector<Card>& hand1, const std::vector<Card>& hand2)
 {
@@ -70,7 +73,23 @@ std::map<Suit, int> SuitOccurences(const std::vector<Card>& fullHand)
 	return suitOccurences;
 }
 
+void SortByValue(std::vector<Card>& hand)
+{
+	std::sort(hand.begin(), hand.end(), [](const Card& a, const Card& b)
+		{
+			return a.TotalValue < b.TotalValue;
+		});
+}
 
+void SortByRank(std::vector<Card>& hand)
+{
+	std::sort(hand.begin(), hand.end(), [](const Card& a, const Card& b)
+		{
+			return a.Rank < b.Rank;
+		});
+}
+
+//The following functions are checks used in the Evaluate function
 bool HasStraightFlush(const std::vector<Card>& fullHand)
 {
 	{
@@ -206,6 +225,7 @@ bool HasPair(const std::vector<Card>& fullHand)
 	} return false;
 }
 
+//Determines what the value of a hand is
 HandValue Evaluate(const std::vector<Card>& hand1, const std::vector<Card>& hand2)
 {
 	const std::vector<Card> finalHand = FuseHands(hand1, hand2);
@@ -247,6 +267,7 @@ HandValue Evaluate(const std::vector<Card>& hand1, const std::vector<Card>& hand
 	}
 }
 
+//Depending on the values, determines the winner
 void EndResult(const HandValue scorePlayer, const HandValue scoreComputer)
 {
 	if (scoreComputer > scorePlayer)

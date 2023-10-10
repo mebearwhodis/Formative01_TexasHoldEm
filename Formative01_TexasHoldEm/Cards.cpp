@@ -1,6 +1,8 @@
 #include <array>
 #include <string>
 
+//These arrays are simply for naming purposes
+
 std::array<std::string, 4> suitName
 {
 	"Clubs",
